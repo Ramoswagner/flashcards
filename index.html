@@ -22,27 +22,31 @@ body {
     color: white;
 }
 
+/* CONTAINER */
 .container {
     width: 90%;
-    max-width: 600px;
+    max-width: 650px;
     text-align: center;
 }
 
+/* TÍTULO */
 h1 {
-    margin-bottom: 20px;
+    margin-bottom: 25px;
     font-weight: 600;
+    letter-spacing: 1px;
 }
 
+/* CARD */
 .card {
-    perspective: 1000px;
+    perspective: 1200px;
     margin-bottom: 20px;
 }
 
 .card-inner {
     position: relative;
     width: 100%;
-    height: 300px;
-    transition: transform 0.8s;
+    height: 320px;
+    transition: transform 0.8s cubic-bezier(.4,.2,.2,1);
     transform-style: preserve-3d;
     cursor: pointer;
 }
@@ -55,14 +59,14 @@ h1 {
     position: absolute;
     width: 100%;
     height: 100%;
-    padding: 30px;
-    border-radius: 20px;
+    padding: 35px;
+    border-radius: 25px;
     backface-visibility: hidden;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    box-shadow: 0 10px 25px rgba(0,0,0,0.3);
+    box-shadow: 0 20px 40px rgba(0,0,0,0.35);
 }
 
 .card-front {
@@ -71,43 +75,60 @@ h1 {
 }
 
 .card-back {
-    background: #f4f4f4;
+    background: #f5f7fa;
     color: #222;
     transform: rotateY(180deg);
 }
 
-.card-back small {
-    margin-top: 15px;
-    font-size: 14px;
-    opacity: 0.8;
+.card-front h2 {
+    font-size: 20px;
+    line-height: 1.5;
 }
 
+.card-back h3 {
+    font-size: 22px;
+    margin-bottom: 12px;
+    color: #1e3c72;
+}
+
+.card-back small {
+    font-size: 14px;
+    opacity: 0.85;
+    line-height: 1.4;
+}
+
+/* BOTÕES */
 .controls {
     display: flex;
-    justify-content: space-between;
+    gap: 10px;
     margin-top: 15px;
 }
 
 button {
-    padding: 10px 20px;
-    border-radius: 10px;
+    flex: 1;
+    padding: 12px;
+    border-radius: 12px;
     border: none;
     cursor: pointer;
-    font-weight: bold;
-    transition: 0.3s;
+    font-weight: 600;
+    transition: all 0.3s ease;
 }
 
 button:hover {
-    transform: scale(1.05);
+    transform: translateY(-3px);
+    box-shadow: 0 5px 15px rgba(0,0,0,0.4);
 }
 
 .btn-prev { background: #444; color: white; }
 .btn-next { background: #00c896; color: white; }
+.btn-random { background: #ffb703; color: #000; }
+.btn-reset { background: #d62828; color: white; }
 
+/* PROGRESSO */
 .progress-bar {
     width: 100%;
     height: 8px;
-    background: rgba(255,255,255,0.2);
+    background: rgba(255,255,255,0.3);
     border-radius: 10px;
     margin-top: 20px;
     overflow: hidden;
@@ -117,13 +138,20 @@ button:hover {
     height: 100%;
     background: #00ffcc;
     width: 0%;
-    transition: width 0.4s;
+    transition: width 0.4s ease;
 }
 
+/* CONTADOR */
 .counter {
-    margin-top: 10px;
+    margin-top: 12px;
     font-size: 14px;
-    opacity: 0.8;
+    opacity: 0.9;
+}
+
+/* RESPONSIVO */
+@media (max-width: 500px) {
+    .card-inner { height: 280px; }
+    .card-front h2 { font-size: 18px; }
 }
 </style>
 </head>
@@ -134,7 +162,7 @@ button:hover {
     <h1>Flashcards - Figuras de Linguagem</h1>
 
     <div class="card" onclick="flipCard()">
-        <div class="card-inner" id="cardInner">
+        <div class="card-inner">
             <div class="card-front">
                 <h2 id="pergunta">Carregando...</h2>
             </div>
@@ -150,6 +178,11 @@ button:hover {
         <button class="btn-next" onclick="nextCard()">Próximo</button>
     </div>
 
+    <div class="controls">
+        <button class="btn-random" onclick="shuffleCards()">Modo Aleatório</button>
+        <button class="btn-reset" onclick="resetOrder()">Reiniciar Ordem</button>
+    </div>
+
     <div class="progress-bar">
         <div class="progress" id="progress"></div>
     </div>
@@ -159,23 +192,26 @@ button:hover {
 
 <script>
 let flashcards = [];
+let originalCards = [];
 let currentIndex = 0;
 
 fetch("flashcards.json")
 .then(response => response.json())
 .then(data => {
     flashcards = data;
+    originalCards = [...data];
     loadCard();
 });
 
 function loadCard() {
     const card = flashcards[currentIndex];
+
     document.getElementById("pergunta").innerText = card.pergunta;
     document.getElementById("resposta").innerText = card.resposta;
     document.getElementById("explicacao").innerText = card.explicacao;
-    
-    document.getElementById("cardInner").parentElement.classList.remove("flip");
-    
+
+    document.querySelector(".card").classList.remove("flip");
+
     updateProgress();
 }
 
@@ -195,6 +231,21 @@ function prevCard() {
         currentIndex--;
         loadCard();
     }
+}
+
+function shuffleCards() {
+    for (let i = flashcards.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [flashcards[i], flashcards[j]] = [flashcards[j], flashcards[i]];
+    }
+    currentIndex = 0;
+    loadCard();
+}
+
+function resetOrder() {
+    flashcards = [...originalCards];
+    currentIndex = 0;
+    loadCard();
 }
 
 function updateProgress() {
