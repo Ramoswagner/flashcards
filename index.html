@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
-<title>Flashcards · Figuras de Linguagem</title>
+<title>Cantinho de Estudos · Flashcards</title>
 
 <style>
 :root {
@@ -47,13 +47,23 @@ html {
     z-index: 10;
     display: flex;
     flex-direction: column;
-    height: 100%;
-    max-height: 95vh;
+    min-height: 95vh;
 }
 
-/* Header minimalista */
+/* Telas */
+.screen {
+    display: none;
+    flex-direction: column;
+    height: 100%;
+}
+
+.screen.active {
+    display: flex;
+}
+
+/* Header */
 .header {
-    margin-bottom: 20px;
+    margin-bottom: 24px;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -69,22 +79,139 @@ html {
     opacity: 0.7;
 }
 
-.stats {
-    display: flex;
-    gap: 12px;
+/* Home Screen */
+.welcome-message {
+    background: var(--bg-secondary);
+    border-radius: 28px;
+    padding: 32px 24px;
+    margin-bottom: 32px;
+    text-align: center;
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.1);
+    border: 1px solid rgba(242, 230, 216, 0.1);
+}
+
+.welcome-message h2 {
+    color: var(--text-primary);
+    font-size: 1.6rem;
+    font-weight: 400;
+    line-height: 1.4;
+    margin-bottom: 12px;
+    letter-spacing: -0.02em;
+}
+
+.welcome-message p {
+    color: var(--text-primary);
+    font-size: 1rem;
+    opacity: 0.7;
+    font-weight: 300;
+    line-height: 1.6;
+}
+
+/* Lista de Temas */
+.topics-title {
     color: var(--text-secondary);
     font-size: 0.85rem;
-    font-weight: 400;
+    letter-spacing: 0.5px;
+    margin-bottom: 16px;
+    padding: 0 4px;
+    opacity: 0.5;
+    text-transform: uppercase;
 }
 
-.stat-item {
+.topics-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    margin-bottom: 32px;
+}
+
+.topic-card {
+    background: rgba(242, 230, 216, 0.03);
+    border: 1px solid rgba(242, 230, 216, 0.08);
+    border-radius: 24px;
+    padding: 20px;
+    cursor: pointer;
+    transition: all 0.2s ease;
     display: flex;
     align-items: center;
-    gap: 4px;
-    opacity: 0.7;
+    gap: 16px;
 }
 
-/* Card principal - elegante e limpo */
+.topic-card:active {
+    background: rgba(242, 230, 216, 0.06);
+    transform: scale(0.99);
+    border-color: var(--accent);
+}
+
+.topic-icon {
+    width: 48px;
+    height: 48px;
+    background: var(--accent);
+    border-radius: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.5rem;
+    opacity: 0.9;
+}
+
+.topic-info {
+    flex: 1;
+}
+
+.topic-name {
+    color: var(--text-primary);
+    font-size: 1.1rem;
+    font-weight: 400;
+    margin-bottom: 4px;
+}
+
+.topic-meta {
+    color: var(--text-secondary);
+    font-size: 0.8rem;
+    opacity: 0.5;
+    display: flex;
+    gap: 12px;
+}
+
+/* Header do Estudo */
+.study-header {
+    margin-bottom: 20px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.back-button {
+    background: none;
+    border: none;
+    color: var(--text-secondary);
+    font-size: 0.9rem;
+    padding: 8px 12px;
+    border-radius: 30px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    opacity: 0.7;
+    transition: opacity 0.2s;
+    border: 1px solid rgba(242, 230, 216, 0.1);
+}
+
+.back-button:active {
+    opacity: 1;
+    background: rgba(242, 230, 216, 0.05);
+}
+
+.current-topic {
+    color: var(--text-secondary);
+    font-size: 0.9rem;
+    font-weight: 400;
+    opacity: 0.5;
+    letter-spacing: 0.3px;
+}
+
+/* Card principal */
 .card-container {
     perspective: 1500px;
     margin-bottom: 16px;
@@ -119,7 +246,6 @@ html {
     align-items: center;
     padding: 28px;
     box-shadow: 0 8px 30px rgba(0, 0, 0, 0.05);
-    transition: box-shadow 0.3s ease;
 }
 
 .card-front {
@@ -161,7 +287,7 @@ html {
     color: var(--text-primary);
 }
 
-/* Hint minimalista */
+/* Hint */
 .flip-hint {
     position: absolute;
     bottom: 16px;
@@ -173,15 +299,11 @@ html {
     align-items: center;
     gap: 4px;
     opacity: 0.3;
-    transition: opacity 0.2s ease;
+    transition: opacity 0.2s;
     letter-spacing: 0.3px;
 }
 
-.card:hover .flip-hint {
-    opacity: 0.5;
-}
-
-/* Controles sutis */
+/* Controles */
 .controls-grid {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
@@ -203,33 +325,27 @@ html {
     gap: 4px;
     background: transparent;
     color: var(--text-secondary);
-    border: 1px solid rgba(97, 95, 109, 0.2);
-    backdrop-filter: blur(5px);
+    border: 1px solid rgba(242, 230, 216, 0.1);
     letter-spacing: 0.3px;
 }
 
 .btn:active {
-    background: rgba(97, 95, 109, 0.1);
+    background: rgba(242, 230, 216, 0.05);
     transform: scale(0.97);
     border-color: var(--accent);
     color: var(--accent);
 }
 
-/* Progresso - discreto e abaixo */
+/* Progresso */
 .progress-section {
     margin-top: auto;
     padding: 8px 4px 0;
 }
 
-.progress-header {
-    display: none; /* Totalmente discreto */
-}
-
-/* Barra de progresso ultrafina */
 .progress-bar-container {
     width: 100%;
     height: 2px;
-    background: rgba(97, 95, 109, 0.15);
+    background: rgba(242, 230, 216, 0.1);
     border-radius: 100px;
     overflow: hidden;
     margin-bottom: 12px;
@@ -243,20 +359,18 @@ html {
     opacity: 0.7;
 }
 
-/* Miniaturas sutis */
+/* Miniaturas */
 .thumbnails-wrapper {
     width: 100%;
     overflow-x: auto;
     overflow-y: hidden;
     -webkit-overflow-scrolling: touch;
     scrollbar-width: none;
-    -ms-overflow-style: none;
     padding: 4px 0;
     opacity: 0.5;
-    transition: opacity 0.2s ease;
+    transition: opacity 0.2s;
 }
 
-.thumbnails-wrapper:hover,
 .thumbnails-wrapper:active {
     opacity: 0.8;
 }
@@ -268,7 +382,7 @@ html {
 .card-thumbnails {
     display: flex;
     gap: 6px;
-    padding: 2px 2px;
+    padding: 2px;
     min-width: min-content;
     justify-content: center;
 }
@@ -278,7 +392,7 @@ html {
     height: 28px;
     border-radius: 30px;
     background: transparent;
-    border: 1px solid rgba(97, 95, 109, 0.3);
+    border: 1px solid rgba(242, 230, 216, 0.2);
     cursor: pointer;
     transition: all 0.2s ease;
     display: flex;
@@ -302,10 +416,9 @@ html {
     background: var(--accent);
     color: var(--text-primary);
     opacity: 1;
-    border-width: 1px;
 }
 
-/* Toast elegante */
+/* Toast */
 .toast {
     position: fixed;
     bottom: 30px;
@@ -319,18 +432,17 @@ html {
     font-size: 0.85rem;
     z-index: 1000;
     transition: transform 0.3s ease;
-    border: 1px solid rgba(97, 95, 109, 0.2);
+    border: 1px solid rgba(242, 230, 216, 0.1);
     text-align: center;
     letter-spacing: 0.3px;
     backdrop-filter: blur(10px);
-    box-shadow: 0 4px 20px rgba(0,0,0,0.05);
 }
 
 .toast.show {
     transform: translateX(-50%) translateY(0);
 }
 
-/* Loading minimalista */
+/* Loading */
 .loading {
     position: absolute;
     top: 0;
@@ -358,7 +470,7 @@ html {
     to { transform: rotate(360deg); }
 }
 
-/* Ajustes responsivos */
+/* Responsivo */
 @media (max-width: 380px) {
     .card {
         min-height: 280px;
@@ -372,19 +484,9 @@ html {
         font-size: 1.6rem;
     }
     
-    .card-back small {
-        font-size: 0.9rem;
+    .welcome-message h2 {
+        font-size: 1.4rem;
     }
-    
-    .btn {
-        padding: 10px 0;
-        font-size: 0.8rem;
-    }
-}
-
-/* Prevenção de zoom */
-input, textarea, select, button {
-    font-size: 16px;
 }
 
 /* Acessibilidade */
@@ -395,65 +497,78 @@ input, textarea, select, button {
         transition-duration: 0.01ms !important;
     }
 }
-
-.btn:focus-visible,
-.thumbnail:focus-visible {
-    outline: 2px solid var(--accent);
-    outline-offset: 2px;
-}
 </style>
 </head>
 <body>
 
 <div class="container">
-    <!-- Header minimalista -->
-    <div class="header">
-        <h1>figuras de linguagem</h1>
-        <div class="stats">
-            <div class="stat-item">
-                <span id="studyProgress">0/0</span>
-            </div>
-            <div class="stat-item">
-                <span id="studyTime">00:00</span>
-            </div>
-        </div>
-    </div>
-
-    <!-- Card principal -->
-    <div class="card-container">
-        <div class="card" id="mainCard" onclick="flipCard()" role="button" tabindex="0">
-            <div class="card-face card-front">
-                <h2 id="pergunta">Carregando...</h2>
-                <div class="flip-hint">
-                    <span>toque para revelar</span>
-                </div>
-            </div>
-            <div class="card-face card-back">
-                <h3 id="resposta"></h3>
-                <small id="explicacao"></small>
-                <div class="flip-hint">
-                    <span>toque para voltar</span>
+    <!-- Tela Inicial (Home) -->
+    <div id="homeScreen" class="screen active">
+        <div class="header">
+            <h1>cantinho de estudos</h1>
+            <div class="stats">
+                <div class="stat-item">
+                    <span id="totalTopics">0</span> temas
                 </div>
             </div>
         </div>
-    </div>
 
-    <!-- Controles -->
-    <div class="controls-grid">
-        <button class="btn" onclick="prevCard()">← anterior</button>
-        <button class="btn" onclick="nextCard()">próximo →</button>
-        <button class="btn" onclick="shuffleCards()">aleatório</button>
-        <button class="btn" onclick="resetOrder()">reiniciar</button>
-    </div>
-
-    <!-- Progresso discreto -->
-    <div class="progress-section">
-        <div class="progress-bar-container">
-            <div class="progress-bar" id="progress" style="width: 0%;"></div>
+        <div class="welcome-message">
+            <h2>Seja bem vindo(a) ao seu cantinho de estudos rápidos!!</h2>
+            <p>O que deseja rever hoje?</p>
         </div>
-        
-        <div class="thumbnails-wrapper">
-            <div class="card-thumbnails" id="thumbnails"></div>
+
+        <div class="topics-title">temas disponíveis</div>
+        <div class="topics-grid" id="topicsList">
+            <!-- Temas serão inseridos aqui via JavaScript -->
+        </div>
+    </div>
+
+    <!-- Tela de Estudo -->
+    <div id="studyScreen" class="screen">
+        <div class="study-header">
+            <button class="back-button" onclick="goHome()">
+                <span>←</span> voltar
+            </button>
+            <span class="current-topic" id="currentTopic"></span>
+        </div>
+
+        <!-- Card principal -->
+        <div class="card-container">
+            <div class="card" id="mainCard" onclick="flipCard()" role="button" tabindex="0">
+                <div class="card-face card-front">
+                    <h2 id="pergunta">Carregando...</h2>
+                    <div class="flip-hint">
+                        <span>toque para revelar</span>
+                    </div>
+                </div>
+                <div class="card-face card-back">
+                    <h3 id="resposta"></h3>
+                    <small id="explicacao"></small>
+                    <div class="flip-hint">
+                        <span>toque para voltar</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Controles -->
+        <div class="controls-grid">
+            <button class="btn" onclick="prevCard()">← anterior</button>
+            <button class="btn" onclick="nextCard()">próximo →</button>
+            <button class="btn" onclick="shuffleCards()">aleatório</button>
+            <button class="btn" onclick="resetOrder()">reiniciar</button>
+        </div>
+
+        <!-- Progresso -->
+        <div class="progress-section">
+            <div class="progress-bar-container">
+                <div class="progress-bar" id="progress" style="width: 0%;"></div>
+            </div>
+            
+            <div class="thumbnails-wrapper">
+                <div class="card-thumbnails" id="thumbnails"></div>
+            </div>
         </div>
     </div>
 </div>
@@ -462,6 +577,65 @@ input, textarea, select, button {
 <div class="toast" id="toast"></div>
 
 <script>
+// Estrutura de dados com múltiplos temas
+const studyTopics = {
+    "figuras-linguagem": {
+        name: "Figuras de Linguagem",
+        icon: "🎭",
+        cardCount: 8,
+        flashcards: [
+            { pergunta: "O que é Metáfora?", resposta: "Metáfora", explicacao: "Comparação implícita entre dois elementos." },
+            { pergunta: "O que é Ironia?", resposta: "Ironia", explicacao: "Dizer o oposto do que se quer expressar." },
+            { pergunta: "O que é Hipérbole?", resposta: "Hipérbole", explicacao: "Exagero intencional para enfatizar uma ideia." },
+            { pergunta: "O que é Personificação?", resposta: "Personificação", explicacao: "Atribuir características humanas a seres inanimados." },
+            { pergunta: "O que é Antítese?", resposta: "Antítese", explicacao: "Oposição entre duas ideias ou pensamentos." },
+            { pergunta: "O que é Eufemismo?", resposta: "Eufemismo", explicacao: "Suavizar uma ideia ou expressão desagradável." },
+            { pergunta: "O que é Onomatopeia?", resposta: "Onomatopeia", explicacao: "Palavra que imita sons da natureza." },
+            { pergunta: "O que é Aliteração?", resposta: "Aliteração", explicacao: "Repetição de sons consonantais." }
+        ]
+    },
+    "verbos": {
+        name: "Verbos",
+        icon: "📝",
+        cardCount: 6,
+        flashcards: [
+            { pergunta: "O que é Verbo?", resposta: "Verbo", explicacao: "Palavra que indica ação, estado ou fenômeno." },
+            { pergunta: "O que é Verbo no Infinitivo?", resposta: "Infinitivo", explicacao: "Forma original do verbo: amar, vender, partir." },
+            { pergunta: "O que é Verbo no Pretérito?", resposta: "Pretérito", explicacao: "Ação que ocorreu no passado." },
+            { pergunta: "O que é Verbo no Presente?", resposta: "Presente", explicacao: "Ação que ocorre no momento da fala." },
+            { pergunta: "O que é Verbo no Futuro?", resposta: "Futuro", explicacao: "Ação que ainda vai acontecer." },
+            { pergunta: "O que são Verbos Regulares?", resposta: "Regulares", explicacao: "Seguem o padrão de conjugação." }
+        ]
+    },
+    "literatura": {
+        name: "Literatura Brasileira",
+        icon: "📚",
+        cardCount: 6,
+        flashcards: [
+            { pergunta: "Quem escreveu 'Memórias Póstumas de Brás Cubas'?", resposta: "Machado de Assis", explicacao: "Considerado o maior escritor brasileiro." },
+            { pergunta: "O que é Modernismo?", resposta: "Modernismo", explicacao: "Movimento cultural que buscava renovação estética." },
+            { pergunta: "Quem é Carlos Drummond de Andrade?", resposta: "Poeta modernista", explicacao: "Um dos maiores poetas brasileiros." },
+            { pergunta: "O que é Arcadismo?", resposta: "Arcadismo", explicacao: "Escola literária do século XVIII." },
+            { pergunta: "Quem escreveu 'O Cortiço'?", resposta: "Aluísio Azevedo", explicacao: "Romance naturalista brasileiro." },
+            { pergunta: "O que é Romance?", resposta: "Romance", explicacao: "Narrativa longa em prosa." }
+        ]
+    },
+    "gramatica": {
+        name: "Gramática",
+        icon: "📖",
+        cardCount: 6,
+        flashcards: [
+            { pergunta: "O que é Substantivo?", resposta: "Substantivo", explicacao: "Palavra que nomeia seres, coisas, sentimentos." },
+            { pergunta: "O que é Adjetivo?", resposta: "Adjetivo", explicacao: "Característica ou qualidade do substantivo." },
+            { pergunta: "O que é Artigo?", resposta: "Artigo", explicacao: "Palavra que acompanha o substantivo." },
+            { pergunta: "O que é Preposição?", resposta: "Preposição", explicacao: "Liga palavras entre si." },
+            { pergunta: "O que é Conjunção?", resposta: "Conjunção", explicacao: "Liga orações ou termos semelhantes." },
+            { pergunta: "O que é Interjeição?", resposta: "Interjeição", explicacao: "Expressa emoções e sentimentos." }
+        ]
+    }
+};
+
+let currentTopic = null;
 let flashcards = [];
 let originalCards = [];
 let currentIndex = 0;
@@ -469,9 +643,13 @@ let studyTime = 0;
 let timerInterval;
 let isLoading = true;
 let touchStartX = 0;
-let touchEndX = 0;
 
 // Elementos DOM
+const homeScreen = document.getElementById('homeScreen');
+const studyScreen = document.getElementById('studyScreen');
+const topicsList = document.getElementById('topicsList');
+const totalTopicsEl = document.getElementById('totalTopics');
+const currentTopicEl = document.getElementById('currentTopic');
 const cardElement = document.getElementById('mainCard');
 const perguntaEl = document.getElementById('pergunta');
 const respostaEl = document.getElementById('resposta');
@@ -482,41 +660,80 @@ const thumbnailsEl = document.getElementById('thumbnails');
 const toastEl = document.getElementById('toast');
 const studyTimeEl = document.getElementById('studyTime');
 
-// Carregar dados
-fetch("flashcards.json")
-.then(response => response.json())
-.then(data => {
-    flashcards = data;
-    originalCards = [...data];
-    isLoading = false;
+// Inicialização
+function init() {
+    renderTopics();
+    totalTopicsEl.textContent = Object.keys(studyTopics).length;
+}
+
+function renderTopics() {
+    topicsList.innerHTML = '';
+    
+    for (const [key, topic] of Object.entries(studyTopics)) {
+        const topicCard = document.createElement('div');
+        topicCard.className = 'topic-card';
+        topicCard.onclick = () => selectTopic(key);
+        
+        topicCard.innerHTML = `
+            <div class="topic-icon">${topic.icon}</div>
+            <div class="topic-info">
+                <div class="topic-name">${topic.name}</div>
+                <div class="topic-meta">
+                    <span>📚 ${topic.cardCount} cards</span>
+                </div>
+            </div>
+        `;
+        
+        topicsList.appendChild(topicCard);
+    }
+}
+
+function selectTopic(topicKey) {
+    currentTopic = studyTopics[topicKey];
+    flashcards = [...currentTopic.flashcards];
+    originalCards = [...currentTopic.flashcards];
+    currentIndex = 0;
+    
+    currentTopicEl.textContent = currentTopic.name;
+    
+    // Trocar para tela de estudo
+    homeScreen.classList.remove('active');
+    studyScreen.classList.add('active');
+    
     loadCard();
     startTimer();
-    showToast('pronto');
-})
-.catch(() => {
-    // Dados de exemplo silenciosos
-    flashcards = [
-        { pergunta: "O que é Metáfora?", resposta: "Metáfora", explicacao: "Comparação implícita." },
-        { pergunta: "O que é Ironia?", resposta: "Ironia", explicacao: "Dizer o oposto do que se quer." },
-        { pergunta: "O que é Hipérbole?", resposta: "Hipérbole", explicacao: "Exagero expressivo." }
-    ];
-    originalCards = [...flashcards];
-    isLoading = false;
-    loadCard();
-    startTimer();
-});
+    showToast(`📖 ${currentTopic.name}`);
+}
+
+function goHome() {
+    studyScreen.classList.remove('active');
+    homeScreen.classList.add('active');
+    stopTimer();
+    studyTime = 0;
+    studyTimeEl.textContent = '00:00';
+}
 
 function startTimer() {
+    stopTimer();
     timerInterval = setInterval(() => {
         studyTime++;
         const minutes = Math.floor(studyTime / 60);
         const seconds = studyTime % 60;
-        studyTimeEl.textContent = `${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
+        if (studyTimeEl) {
+            studyTimeEl.textContent = `${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
+        }
     }, 1000);
 }
 
+function stopTimer() {
+    if (timerInterval) {
+        clearInterval(timerInterval);
+        timerInterval = null;
+    }
+}
+
 function loadCard() {
-    if (isLoading || !flashcards.length) return;
+    if (!flashcards || !flashcards.length) return;
     
     const card = flashcards[currentIndex];
     
@@ -558,18 +775,18 @@ function updateThumbnails() {
 }
 
 function updateProgress() {
-    counterEl.textContent = `${currentIndex + 1}/${flashcards.length}`;
+    if (counterEl) {
+        counterEl.textContent = `${currentIndex + 1}/${flashcards.length}`;
+    }
     const progressValue = ((currentIndex + 1) / flashcards.length) * 100;
     progressEl.style.width = `${progressValue}%`;
 }
 
 function flipCard() {
-    if (isLoading) return;
     cardElement.classList.toggle('flipped');
 }
 
 function nextCard() {
-    if (isLoading) return;
     if (currentIndex < flashcards.length - 1) {
         currentIndex++;
         loadCard();
@@ -578,7 +795,6 @@ function nextCard() {
 }
 
 function prevCard() {
-    if (isLoading) return;
     if (currentIndex > 0) {
         currentIndex--;
         loadCard();
@@ -587,24 +803,20 @@ function prevCard() {
 }
 
 function shuffleCards() {
-    if (isLoading) return;
-    
     for (let i = flashcards.length - 1; i > 0; i--) {
         const j = Math.floor(Math.random() * (i + 1));
         [flashcards[i], flashcards[j]] = [flashcards[j], flashcards[i]];
     }
     currentIndex = 0;
     loadCard();
-    showToast('aleatório');
+    showToast('🎲 aleatório');
 }
 
 function resetOrder() {
-    if (isLoading) return;
-    
     flashcards = [...originalCards];
     currentIndex = 0;
     loadCard();
-    showToast('reiniciado');
+    showToast('🔄 reiniciado');
 }
 
 function showToast(message, duration = 1500) {
@@ -619,7 +831,7 @@ cardElement.addEventListener('touchstart', (e) => {
 }, { passive: true });
 
 cardElement.addEventListener('touchend', (e) => {
-    touchEndX = e.changedTouches[0].screenX;
+    const touchEndX = e.changedTouches[0].screenX;
     const diff = touchStartX - touchEndX;
     if (Math.abs(diff) > 50) {
         diff > 0 ? nextCard() : prevCard();
@@ -628,14 +840,18 @@ cardElement.addEventListener('touchend', (e) => {
 
 // Keyboard
 document.addEventListener('keydown', (e) => {
-    if (isLoading) return;
+    if (!studyScreen.classList.contains('active')) return;
+    
     if (e.key === 'ArrowLeft') { e.preventDefault(); prevCard(); }
     else if (e.key === 'ArrowRight') { e.preventDefault(); nextCard(); }
     else if (e.key === ' ') { e.preventDefault(); flipCard(); }
 });
 
-window.addEventListener('beforeunload', () => clearInterval(timerInterval));
+// Inicializar
+init();
+
+// Cleanup
+window.addEventListener('beforeunload', () => stopTimer());
 </script>
 </body>
 </html>
-
