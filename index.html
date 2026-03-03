@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Flashcards - Figuras de Linguagem</title>
+
+<style>
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', sans-serif;
+}
+
+body {
+    background: linear-gradient(135deg, #1e3c72, #2a5298);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    color: white;
+}
+
+.container {
+    width: 90%;
+    max-width: 600px;
+    text-align: center;
+}
+
+h1 {
+    margin-bottom: 20px;
+    font-weight: 600;
+}
+
+.card {
+    perspective: 1000px;
+    margin-bottom: 20px;
+}
+
+.card-inner {
+    position: relative;
+    width: 100%;
+    height: 300px;
+    transition: transform 0.8s;
+    transform-style: preserve-3d;
+    cursor: pointer;
+}
+
+.card.flip .card-inner {
+    transform: rotateY(180deg);
+}
+
+.card-front, .card-back {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    padding: 30px;
+    border-radius: 20px;
+    backface-visibility: hidden;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.3);
+}
+
+.card-front {
+    background: white;
+    color: #333;
+}
+
+.card-back {
+    background: #f4f4f4;
+    color: #222;
+    transform: rotateY(180deg);
+}
+
+.card-back small {
+    margin-top: 15px;
+    font-size: 14px;
+    opacity: 0.8;
+}
+
+.controls {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 15px;
+}
+
+button {
+    padding: 10px 20px;
+    border-radius: 10px;
+    border: none;
+    cursor: pointer;
+    font-weight: bold;
+    transition: 0.3s;
+}
+
+button:hover {
+    transform: scale(1.05);
+}
+
+.btn-prev { background: #444; color: white; }
+.btn-next { background: #00c896; color: white; }
+
+.progress-bar {
+    width: 100%;
+    height: 8px;
+    background: rgba(255,255,255,0.2);
+    border-radius: 10px;
+    margin-top: 20px;
+    overflow: hidden;
+}
+
+.progress {
+    height: 100%;
+    background: #00ffcc;
+    width: 0%;
+    transition: width 0.4s;
+}
+
+.counter {
+    margin-top: 10px;
+    font-size: 14px;
+    opacity: 0.8;
+}
+</style>
+</head>
+
+<body>
+
+<div class="container">
+    <h1>Flashcards - Figuras de Linguagem</h1>
+
+    <div class="card" onclick="flipCard()">
+        <div class="card-inner" id="cardInner">
+            <div class="card-front">
+                <h2 id="pergunta">Carregando...</h2>
+            </div>
+            <div class="card-back">
+                <h3 id="resposta"></h3>
+                <small id="explicacao"></small>
+            </div>
+        </div>
+    </div>
+
+    <div class="controls">
+        <button class="btn-prev" onclick="prevCard()">Anterior</button>
+        <button class="btn-next" onclick="nextCard()">Próximo</button>
+    </div>
+
+    <div class="progress-bar">
+        <div class="progress" id="progress"></div>
+    </div>
+
+    <div class="counter" id="counter"></div>
+</div>
+
+<script>
+let flashcards = [];
+let currentIndex = 0;
+
+fetch("flashcards.json")
+.then(response => response.json())
+.then(data => {
+    flashcards = data;
+    loadCard();
+});
+
+function loadCard() {
+    const card = flashcards[currentIndex];
+    document.getElementById("pergunta").innerText = card.pergunta;
+    document.getElementById("resposta").innerText = card.resposta;
+    document.getElementById("explicacao").innerText = card.explicacao;
+    
+    document.getElementById("cardInner").parentElement.classList.remove("flip");
+    
+    updateProgress();
+}
+
+function flipCard() {
+    document.querySelector(".card").classList.toggle("flip");
+}
+
+function nextCard() {
+    if (currentIndex < flashcards.length - 1) {
+        currentIndex++;
+        loadCard();
+    }
+}
+
+function prevCard() {
+    if (currentIndex > 0) {
+        currentIndex--;
+        loadCard();
+    }
+}
+
+function updateProgress() {
+    const progress = ((currentIndex + 1) / flashcards.length) * 100;
+    document.getElementById("progress").style.width = progress + "%";
+    document.getElementById("counter").innerText =
+        `Questão ${currentIndex + 1} de ${flashcards.length}`;
+}
+</script>
+
+</body>
+</html>
