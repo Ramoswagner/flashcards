@@ -1,242 +1,160 @@
-[
-  {
-    "id": 1,
-    "pergunta": "O que é metáfora?",
-    "resposta": "É a substituição de um termo por outro com base em uma relação de semelhança implícita.",
-    "explicacao": "Na metáfora não há conectivo comparativo explícito. Ex: 'Ele é uma fera nos estudos.'"
+{
+  "figuras-linguagem": {
+    "name": "Figuras de Linguagem",
+    "icon": "🎭",
+    "description": "Recursos estilísticos para dar ênfase e expressividade ao texto",
+    "flashcards": [
+      {
+        "pergunta": "O que é Metáfora?",
+        "resposta": "Metáfora",
+        "explicacao": "Comparação implícita entre dois elementos, sem uso de conectivos comparativos."
+      },
+      {
+        "pergunta": "O que é Ironia?",
+        "resposta": "Ironia",
+        "explicacao": "Dizer o oposto do que se quer expressar, geralmente com tom crítico ou humorístico."
+      },
+      {
+        "pergunta": "O que é Hipérbole?",
+        "resposta": "Hipérbole",
+        "explicacao": "Exagero intencional para enfatizar uma ideia ou sentimento."
+      },
+      {
+        "pergunta": "O que é Personificação?",
+        "resposta": "Personificação (Prosopopeia)",
+        "explicacao": "Atribuir características humanas a seres inanimados ou irracionais."
+      },
+      {
+        "pergunta": "O que é Antítese?",
+        "resposta": "Antítese",
+        "explicacao": "Oposição entre duas ideias ou pensamentos em uma mesma frase."
+      },
+      {
+        "pergunta": "O que é Eufemismo?",
+        "resposta": "Eufemismo",
+        "explicacao": "Suavizar uma ideia ou expressão desagradável, tornando-a mais amena."
+      },
+      {
+        "pergunta": "O que é Onomatopeia?",
+        "resposta": "Onomatopeia",
+        "explicacao": "Palavra que imita sons da natureza ou ruídos."
+      },
+      {
+        "pergunta": "O que é Aliteração?",
+        "resposta": "Aliteração",
+        "explicacao": "Repetição de sons consonantais para criar efeito sonoro."
+      }
+    ]
   },
-  {
-    "id": 2,
-    "pergunta": "Qual a diferença entre metáfora e comparação?",
-    "resposta": "A comparação utiliza conectivo comparativo; a metáfora não.",
-    "explicacao": "Comparação: 'Ele é forte como um touro.' Metáfora: 'Ele é um touro.'"
+  "verbos": {
+    "name": "Verbos",
+    "icon": "📝",
+    "description": "Palavras que indicam ação, estado ou fenômeno",
+    "flashcards": [
+      {
+        "pergunta": "O que é Verbo?",
+        "resposta": "Verbo",
+        "explicacao": "Palavra que indica ação, estado, fenômeno ou processo."
+      },
+      {
+        "pergunta": "O que é Verbo no Infinitivo?",
+        "resposta": "Infinitivo",
+        "explicacao": "Forma original do verbo terminada em -AR, -ER, -IR (amar, vender, partir)."
+      },
+      {
+        "pergunta": "O que é Verbo no Pretérito?",
+        "resposta": "Pretérito",
+        "explicacao": "Ação que ocorreu no passado, podendo ser perfeito, imperfeito ou mais-que-perfeito."
+      },
+      {
+        "pergunta": "O que é Verbo no Presente?",
+        "resposta": "Presente",
+        "explicacao": "Ação que ocorre no momento da fala ou uma verdade universal."
+      },
+      {
+        "pergunta": "O que é Verbo no Futuro?",
+        "resposta": "Futuro",
+        "explicacao": "Ação que ainda vai acontecer, podendo ser do presente ou do pretérito."
+      },
+      {
+        "pergunta": "O que são Verbos Regulares?",
+        "resposta": "Regulares",
+        "explicacao": "Seguem o padrão de conjugação sem alterações no radical."
+      }
+    ]
   },
-  {
-    "id": 3,
-    "pergunta": "O que é metonímia?",
-    "resposta": "É a substituição de um termo por outro com base em relação de proximidade ou contiguidade.",
-    "explicacao": "Ex: 'Li Machado de Assis.' (autor pela obra)."
+  "literatura": {
+    "name": "Literatura Brasileira",
+    "icon": "📚",
+    "description": "Principais obras, autores e movimentos literários do Brasil",
+    "flashcards": [
+      {
+        "pergunta": "Quem escreveu 'Memórias Póstumas de Brás Cubas'?",
+        "resposta": "Machado de Assis",
+        "explicacao": "Considerado o maior escritor brasileiro, fundador da Academia Brasileira de Letras."
+      },
+      {
+        "pergunta": "O que foi o Modernismo?",
+        "resposta": "Modernismo",
+        "explicacao": "Movimento cultural que buscava renovação estética, iniciado com a Semana de 22."
+      },
+      {
+        "pergunta": "Quem é Carlos Drummond de Andrade?",
+        "resposta": "Poeta modernista",
+        "explicacao": "Um dos maiores poetas brasileiros, autor de 'No Meio do Caminho'."
+      },
+      {
+        "pergunta": "O que é Arcadismo?",
+        "resposta": "Arcadismo",
+        "explicacao": "Escola literária do século XVIII que valorizava a vida simples e a natureza."
+      },
+      {
+        "pergunta": "Quem escreveu 'O Cortiço'?",
+        "resposta": "Aluísio Azevedo",
+        "explicacao": "Romance naturalista que retrata a realidade social brasileira."
+      },
+      {
+        "pergunta": "O que é Romance?",
+        "resposta": "Romance",
+        "explicacao": "Narrativa longa em prosa com personagens e conflitos desenvolvidos."
+      }
+    ]
   },
-  {
-    "id": 4,
-    "pergunta": "O que é catacrese?",
-    "resposta": "É o uso de uma palavra por falta de termo específico.",
-    "explicacao": "Ex: 'Braço da cadeira', 'pé da mesa'."
-  },
-  {
-    "id": 5,
-    "pergunta": "O que é sinestesia?",
-    "resposta": "É a mistura de sensações de diferentes sentidos.",
-    "explicacao": "Ex: 'Perfume doce', 'voz áspera'."
-  },
-  {
-    "id": 6,
-    "pergunta": "O que é hipérbole?",
-    "resposta": "É o exagero intencional de uma ideia.",
-    "explicacao": "Ex: 'Estou morrendo de fome.'"
-  },
-  {
-    "id": 7,
-    "pergunta": "O que é eufemismo?",
-    "resposta": "É a suavização de uma expressão desagradável.",
-    "explicacao": "Ex: 'Ele partiu desta para melhor.'"
-  },
-  {
-    "id": 8,
-    "pergunta": "O que é ironia?",
-    "resposta": "É a afirmação do contrário do que se pensa, com intenção crítica ou humorística.",
-    "explicacao": "Ex: dizer 'Que pontualidade!' para alguém atrasado."
-  },
-  {
-    "id": 9,
-    "pergunta": "O que é antítese?",
-    "resposta": "É a aproximação de termos com sentidos opostos.",
-    "explicacao": "Ex: 'O bem e o mal convivem.'"
-  },
-  {
-    "id": 10,
-    "pergunta": "O que é paradoxo?",
-    "resposta": "É a união de ideias contraditórias que geram reflexão.",
-    "explicacao": "Ex: 'É ferida que dói e não se sente.'"
-  },
-  {
-    "id": 11,
-    "pergunta": "A frase 'Seus olhos são duas estrelas' é exemplo de qual figura de linguagem?",
-    "resposta": "Metáfora.",
-    "explicacao": "Há substituição por semelhança implícita, sem uso de conectivo comparativo."
-  },
-  {
-    "id": 12,
-    "pergunta": "A frase 'Ela é bela como uma flor' é exemplo de qual figura de linguagem?",
-    "resposta": "Comparação.",
-    "explicacao": "Há presença do conectivo comparativo 'como'."
-  },
-  {
-    "id": 13,
-    "pergunta": "A frase 'Li Clarice Lispector nas férias' é exemplo de qual figura de linguagem?",
-    "resposta": "Metonímia.",
-    "explicacao": "O autor está sendo usado no lugar da obra."
-  },
-  {
-    "id": 14,
-    "pergunta": "A frase 'Estou morrendo de sono' é exemplo de qual figura de linguagem?",
-    "resposta": "Hipérbole.",
-    "explicacao": "Há exagero intencional para intensificar a ideia."
-  },
-  {
-    "id": 15,
-    "pergunta": "A frase 'Ele partiu para um lugar melhor' é exemplo de qual figura de linguagem?",
-    "resposta": "Eufemismo.",
-    "explicacao": "A expressão suaviza a ideia de morte."
-  },
-  {
-    "id": 16,
-    "pergunta": "A frase 'Que belo serviço você fez!' (dito após erro grave) é exemplo de qual figura de linguagem?",
-    "resposta": "Ironia.",
-    "explicacao": "Há afirmação contrária ao que realmente se pensa."
-  },
-  {
-    "id": 17,
-    "pergunta": "A frase 'O silêncio gritava na sala' é exemplo de qual figura de linguagem?",
-    "resposta": "Personificação (prosopopeia).",
-    "explicacao": "Atribui ação humana (gritar) a algo inanimado (silêncio)."
-  },
-  {
-    "id": 18,
-    "pergunta": "A frase 'O perfume doce da infância' é exemplo de qual figura de linguagem?",
-    "resposta": "Sinestesia.",
-    "explicacao": "Há mistura de sensação olfativa com gustativa."
-  },
-  {
-    "id": 19,
-    "pergunta": "A frase 'Vivo na solidão da multidão' é exemplo de qual figura de linguagem?",
-    "resposta": "Paradoxo.",
-    "explicacao": "Une ideias aparentemente contraditórias."
-  },
-  {
-    "id": 20,
-    "pergunta": "A frase 'O céu chorava naquela tarde' é exemplo de qual figura de linguagem?",
-    "resposta": "Personificação (prosopopeia).",
-    "explicacao": "Atribui ação humana (chorar) ao céu."
-  },
-  {
-    "id": 21,
-    "pergunta": "A frase 'O palco aplaudiu o artista' é exemplo de qual figura de linguagem?",
-    "resposta": "Metonímia.",
-    "explicacao": "O lugar (palco) é usado no lugar das pessoas que estavam nele."
-  },
-  {
-    "id": 22,
-    "pergunta": "A frase 'Ele é um leão na defesa' é exemplo de qual figura de linguagem?",
-    "resposta": "Metáfora.",
-    "explicacao": "Há comparação implícita baseada em semelhança."
-  },
-  {
-    "id": 23,
-    "pergunta": "A frase 'A vida é feita de altos e baixos' é exemplo de qual figura de linguagem?",
-    "resposta": "Antítese.",
-    "explicacao": "Aproxima termos de sentidos opostos."
-  },
-  {
-    "id": 24,
-    "pergunta": "A frase 'O vento sussurrava entre as árvores' é exemplo de qual figura de linguagem?",
-    "resposta": "Personificação.",
-    "explicacao": "O vento recebe característica humana."
-  },
-  {
-    "id": 25,
-    "pergunta": "A frase 'Ele tem um coração de pedra' é exemplo de qual figura de linguagem?",
-    "resposta": "Metáfora.",
-    "explicacao": "Substituição por semelhança implícita (insensibilidade)."
-  },
-  {
-    "id": 26,
-    "pergunta": "A frase 'Ganhei o pão com o suor do meu rosto' é exemplo de qual figura de linguagem?",
-    "resposta": "Metonímia.",
-    "explicacao": "O efeito (suor) representa o esforço/trabalho."
-  },
-  {
-    "id": 27,
-    "pergunta": "A frase 'Já te falei mil vezes!' é exemplo de qual figura de linguagem?",
-    "resposta": "Hipérbole.",
-    "explicacao": "Exagero intencional para enfatizar a repetição."
-  },
-  {
-    "id": 28,
-    "pergunta": "A frase 'O livro é um mundo' é exemplo de qual figura de linguagem?",
-    "resposta": "Metáfora.",
-    "explicacao": "Há equivalência implícita entre livro e mundo."
-  },
-  {
-    "id": 29,
-    "pergunta": "A frase 'Ele é pobre, porém honesto' destaca qual figura?",
-    "resposta": "Antítese.",
-    "explicacao": "Há contraste implícito entre pobreza e honestidade."
-  },
-  {
-    "id": 30,
-    "pergunta": "A frase 'As paredes ouviram nossa conversa' é exemplo de qual figura de linguagem?",
-    "resposta": "Personificação.",
-    "explicacao": "Atribui capacidade humana (ouvir) a objeto inanimado."
-  },
-  {
-    "id": 31,
-    "pergunta": "A frase 'O Brasil venceu a partida' é exemplo de qual figura de linguagem?",
-    "resposta": "Metonímia.",
-    "explicacao": "O país representa a seleção ou equipe."
-  },
-  {
-    "id": 32,
-    "pergunta": "A frase 'Que ideia brilhante!' pode conter qual figura?",
-    "resposta": "Metáfora.",
-    "explicacao": "Brilhante é usado figuradamente para indicar inteligência."
-  },
-  {
-    "id": 33,
-    "pergunta": "A frase 'Ele vive no mundo da lua' é exemplo de qual figura?",
-    "resposta": "Metáfora.",
-    "explicacao": "Expressão figurada para indicar distração."
-  },
-  {
-    "id": 34,
-    "pergunta": "A frase 'O relógio correu hoje' é exemplo de qual figura?",
-    "resposta": "Personificação.",
-    "explicacao": "Atribui ação humana (correr) ao relógio."
-  },
-  {
-    "id": 35,
-    "pergunta": "A frase 'Isso custou os olhos da cara' é exemplo de qual figura?",
-    "resposta": "Hipérbole.",
-    "explicacao": "Exagero para indicar alto custo."
-  },
-  {
-    "id": 36,
-    "pergunta": "A frase 'Bebi um copo de água' é exemplo de qual figura?",
-    "resposta": "Metonímia.",
-    "explicacao": "O recipiente é usado no lugar do conteúdo."
-  },
-  {
-    "id": 37,
-    "pergunta": "A frase 'A esperança é a última que morre' é exemplo de qual figura?",
-    "resposta": "Personificação.",
-    "explicacao": "Atribui ação humana à esperança."
-  },
-  {
-    "id": 38,
-    "pergunta": "A frase 'Ele trabalha como um cavalo' é exemplo de qual figura?",
-    "resposta": "Comparação.",
-    "explicacao": "Uso do conectivo 'como' estabelece comparação explícita."
-  },
-  {
-    "id": 39,
-    "pergunta": "A frase 'Choveu canivetes ontem' é exemplo de qual figura?",
-    "resposta": "Hipérbole.",
-    "explicacao": "Exagero para indicar chuva intensa."
-  },
-  {
-    "id": 40,
-    "pergunta": "A frase 'Tenho uma montanha de problemas' é exemplo de qual figura?",
-    "resposta": "Metáfora.",
-    "explicacao": "Substituição figurada baseada em ideia de grande quantidade."
+  "gramatica": {
+    "name": "Gramática",
+    "icon": "📖",
+    "description": "Classes gramaticais e suas funções",
+    "flashcards": [
+      {
+        "pergunta": "O que é Substantivo?",
+        "resposta": "Substantivo",
+        "explicacao": "Palavra que nomeia seres, coisas, sentimentos, ideias e lugares."
+      },
+      {
+        "pergunta": "O que é Adjetivo?",
+        "resposta": "Adjetivo",
+        "explicacao": "Característica ou qualidade atribuída ao substantivo."
+      },
+      {
+        "pergunta": "O que é Artigo?",
+        "resposta": "Artigo",
+        "explicacao": "Palavra que acompanha o substantivo, definindo ou indefinindo."
+      },
+      {
+        "pergunta": "O que é Preposição?",
+        "resposta": "Preposição",
+        "explicacao": "Palavra invariável que liga dois termos da oração."
+      },
+      {
+        "pergunta": "O que é Conjunção?",
+        "resposta": "Conjunção",
+        "explicacao": "Liga orações ou termos semelhantes, estabelecendo relação entre eles."
+      },
+      {
+        "pergunta": "O que é Interjeição?",
+        "resposta": "Interjeição",
+        "explicacao": "Expressa emoções, sentimentos ou sensações de forma abrupta."
+      }
+    ]
   }
-]
+}
